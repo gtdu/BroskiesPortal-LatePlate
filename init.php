@@ -11,13 +11,13 @@ $ini = parse_ini_file("config.ini", true)["lateplate"];
 try {
     $pdo = new PDO(
         'mysql:host=' . $ini['db_host'] . ';dbname=' . $ini['db_name'] . ';charset=utf8mb4',
-                        $ini['db_username'],
-                        $ini['db_password'],
-                        array(
+        $ini['db_username'],
+        $ini['db_password'],
+        array(
                             PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
                             PDO::ATTR_PERSISTENT => false
                         )
-                    );
+    );
 } catch (Exception $e) {
     die($e);
 }

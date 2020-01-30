@@ -9,9 +9,9 @@ $postData = array(
     'api_key' => $ini['api_key'],
 );
 
-curl_setopt($ch, CURLOPT_URL,"http://broskies.gtdu.org/api/");
+curl_setopt($ch, CURLOPT_URL, "http://broskies.gtdu.org/api/");
 curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($postData));
 
 $server_output = json_decode(curl_exec($ch));

@@ -83,18 +83,17 @@ if (count($lore) == 0) {
                 <?php
                 if ($_SESSION['level'] > 1) {
                     echo '<th style="width: 10%;">&nbsp;</th>';
-                }
-                ?>
+                } ?>
             </tr>
         </thead>
     <?php
     foreach ($lore as $story) {
         echo "<tr>";
-            echo "<td>" . $story['date'] . "</td>";
-            echo "<td>" . $story['who'] . "</td>";
-            if ($_SESSION['level'] > 1) {
-                echo "<td><a href='?action=completeRequest&resource_id=" . $story['id'] . "'>Mark as Completed</a></td>";
-            }
+        echo "<td>" . $story['date'] . "</td>";
+        echo "<td>" . $story['who'] . "</td>";
+        if ($_SESSION['level'] > 1) {
+            echo "<td><a href='?action=completeRequest&resource_id=" . $story['id'] . "'>Mark as Completed</a></td>";
+        }
         echo "</tr>";
     }
     echo "</table>";
