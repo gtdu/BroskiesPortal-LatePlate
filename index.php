@@ -23,7 +23,6 @@ if ($server_output->level == 1 || $server_output->level == 2) {
     $_SESSION['token'] = $_GET['session_token'];
     $_SESSION['level'] = $server_output->level;
     $_SESSION['name'] = $server_output->name;
-    $_SESSION['email'] = $server_output->email;
     header("Location: dashboard.php");
     die();
 } else {

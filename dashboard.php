@@ -60,7 +60,7 @@ if ($_GET['action'] == 'newRequest') {
         <form method="post">
             <div class="form-group">
                 <label for="newLoreTitle">Date</label>
-                <input name="date" type="date" class="form-control" id="newLoreName" aria-describedby="emailHelp" value="<?php echo date('Y-m-d'); ?>" required>
+                <input name="date" type="date" class="form-control" id="newLoreName" aria-describedby="aria" value="<?php echo date('Y-m-d'); ?>" required>
             </div>
             <input type="hidden" name="action" value="newRequest">
             <button type="submit" class="btn btn-success">Submit</button>
