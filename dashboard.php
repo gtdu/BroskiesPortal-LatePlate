@@ -9,12 +9,12 @@ if ($_SESSION['level'] == 0 || $_SESSION['level'] > 2) {
 if ($_SESSION['level'] > 1) {
     $handle = $config['dbo']->prepare('SELECT * FROM requests WHERE completed = 0 AND date = DATE(NOW())');
     $handle->execute();
-    $lore = $handle->fetchAll(\PDO::FETCH_ASSOC);
+    $lore = $handle->fetchAll(PDO::FETCH_ASSOC);
 } else {
     $handle = $config['dbo']->prepare('SELECT * FROM requests WHERE completed = 0 AND who = ?');
     $handle->bindValue(1, $_SESSION['name']);
     $handle->execute();
-    $lore = $handle->fetchAll(\PDO::FETCH_ASSOC);
+    $lore = $handle->fetchAll(PDO::FETCH_ASSOC);
 }
 
 if ($_POST['action'] == 'newRequest') {
@@ -38,11 +38,12 @@ if ($_SESSION['level'] > 1) {
 
 ?>
 <!doctype html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title></title>
 </head>
 
 <body>
@@ -59,7 +60,7 @@ if ($_GET['action'] == 'newRequest') {
     <div class="pl-4 pr-4 mb-4">
         <form method="post">
             <div class="form-group">
-                <label for="newLoreTitle">Date</label>
+                <label for="newLoreName">Date</label>
                 <input name="date" type="date" class="form-control" id="newLoreName" aria-describedby="aria" value="<?php echo date('Y-m-d'); ?>" required>
             </div>
             <input type="hidden" name="action" value="newRequest">
