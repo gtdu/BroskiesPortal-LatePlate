@@ -18,9 +18,10 @@ if ($_SESSION['level'] > 1) {
 }
 
 if ($_POST['action'] == 'newRequest') {
-    $handle = $config['dbo']->prepare('INSERT INTO requests (date, who) VALUES (?, ?)');
+    $handle = $config['dbo']->prepare('INSERT INTO requests (date, who, meal) VALUES (?, ?, ?)');
     $handle->bindValue(1, $_POST['date']);
     $handle->bindValue(2, $_SESSION['name']);
+    $handle->bindValue(3, $_POST['meal']);
     $handle->execute();
     header("Location: ?");
     die();
@@ -63,6 +64,13 @@ if ($_GET['action'] == 'newRequest') {
                 <label for="newLoreName">Date</label>
                 <input name="date" type="date" class="form-control" id="newLoreName" aria-describedby="aria" value="<?php echo date('Y-m-d'); ?>" required>
             </div>
+            <div class="form-group">
+                <label for="meal">Meal</label>
+                <select class="form-control" id="meal" name="meal">
+                    <option>LUNCH</option>
+                    <option>DINNER</option>
+                </select>
+            </div>
             <input type="hidden" name="action" value="newRequest">
             <button type="submit" class="btn btn-success">Submit</button>
         </form>
@@ -80,6 +88,7 @@ if (count($lore) == 0) {
         <thead class="thead-dark">
             <tr>
                 <th style="width: 15%;">Date</th>
+                <th style="width: 45%;">Meal</th>
                 <th style="width: 45%;">Who</th>
                 <?php
                 if ($_SESSION['level'] > 1) {
@@ -91,6 +100,7 @@ if (count($lore) == 0) {
     foreach ($lore as $story) {
         echo "<tr>";
         echo "<td>" . $story['date'] . "</td>";
+        echo "<td>" . $story['meal'] . "</td>";
         echo "<td>" . $story['who'] . "</td>";
         if ($_SESSION['level'] > 1) {
             echo "<td><a href='?action=completeRequest&resource_id=" . $story['id'] . "'>Mark as Completed</a></td>";
